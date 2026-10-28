@@ -20,7 +20,7 @@ npm run build
 npm run frontend:dev
 ```
 
-Open **http://127.0.0.1:5488/?mode=demo** and double-click the chat or game-room icon. Demo mode is explicitly labeled as synthetic and makes no model requests. Assets and fonts are hosted locally. The locked native dependencies provide platform prebuilds; see the getting-started guide for platform issues.
+Open the [local synthetic demo](http://127.0.0.1:5488/?mode=demo) and double-click the chat or game-room icon. Demo mode is explicitly labeled as synthetic and makes no model requests. Assets and fonts are hosted locally. The locked native dependencies provide platform prebuilds; see the getting-started guide for platform issues.
 
 ![Chat and session management](docs/images/chat.jpg)
 

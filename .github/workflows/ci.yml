@@ -1,7 +1,13 @@
 name: CI
 on:
   push:
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/images/**'
   pull_request:
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/images/**'
 permissions:
   contents: read
 jobs:
