@@ -4,9 +4,9 @@ dist-test/
 build/
 .cache/
 coverage/
-runtime/
-backup/
-logs/
+/runtime/
+/backup/
+/logs/
 .env
 .env.*
 !*.env.example

@@ -6,10 +6,12 @@ import {execFileSync} from 'node:child_process';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const roots=['apps/backend/','apps/frontend-pixel/','packages/contracts/','packages/chat-client/','tools/import-openclaw/','fixtures/','scripts/','tests/','examples/','docs/','deploy/','.github/workflows/','.githooks/'];
 const top=new Set(['.editorconfig','.gitattributes','.gitignore','.node-version','.npmrc','package.json','package-lock.json','tsconfig.json','tsconfig.base.json','README.md','README.en.md','LICENSE','SECURITY.md','CONTRIBUTING.md','THIRD-PARTY-NOTICES.md']);
-const ignored=new Set(['node_modules','dist','dist-test','.git','.cache','runtime','coverage','backup','logs']);
-function walk(directory){return readdirSync(directory,{withFileTypes:true}).flatMap(e=>ignored.has(e.name)?[]:e.isDirectory()?walk(join(directory,e.name)):[relative(root,join(directory,e.name)).replaceAll('\\','/')]);}
+const ignored=new Set(['node_modules','dist','dist-test','.git','.cache','coverage']);
+const privateRoots=new Set(['runtime','backup','logs']);
+function walk(directory){return readdirSync(directory,{withFileTypes:true}).flatMap(e=>ignored.has(e.name)||(resolve(directory)===resolve(root)&&privateRoots.has(e.name))?[]:e.isDirectory()?walk(join(directory,e.name)):[relative(root,join(directory,e.name)).replaceAll('\\','/')]);}
 const files=existsSync(join(root,'.git'))?execFileSync('git',['ls-files','-z'],{cwd:root,encoding:'utf8'}).split('\0').filter(Boolean):walk(root);
 if(!files.length)throw Error('PUBLIC_INDEX_EMPTY');
+for(const name of ['backups','binding','cli','files'])if(!files.includes('apps/backend/src/runtime/'+name+'.ts'))throw Error('RUNTIME_SOURCE_MISSING');
 const rules=[
  ['原生产标识',/8\.163\.23\.36|xn--yet035g\.com|loveneko\.(?:com|cn)|v\.douyin\.com\/94Mu|space\.bilibili\.com\/370703/],
  ['个人文件路径',/[CD]:[\\/](?:Neko|Users[\\/]ASUS)(?:[\\/]|\b)/i],
@@ -19,7 +21,7 @@ const rules=[
 const problems=[];let bytes=0;
 for(const file of files){
  const parts=file.split('/');
- if(!(top.has(file)||roots.some(p=>file.startsWith(p)))||parts.some(p=>ignored.has(p))||/\.(?:sqlite(?:3)?(?:-.*)?|db|key|pem|pfx|p12|log|zip|tar|tgz)$/i.test(file)||(/(?:^|\/)\.env(?:\.|$)/.test(file)&&!file.endsWith('.example')))problems.push([file,'发布路径']);
+ if(!(top.has(file)||roots.some(p=>file.startsWith(p)))||parts.some(p=>ignored.has(p))||privateRoots.has(parts[0])||/\.(?:sqlite(?:3)?(?:-.*)?|db|key|pem|pfx|p12|log|zip|tar|tgz)$/i.test(file)||(/(?:^|\/)\.env(?:\.|$)/.test(file)&&!file.endsWith('.example')))problems.push([file,'发布路径']);
  const full=resolve(root,file),info=lstatSync(full);if(info.isSymbolicLink()||!info.isFile()){problems.push([file,'非普通文件']);continue;}
  if(info.size>12*1024*1024)problems.push([file,'文件过大']);
  const data=readFileSync(full);bytes+=data.length;
