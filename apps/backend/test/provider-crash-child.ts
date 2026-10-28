@@ -1,0 +1,14 @@
+import { randomUUID } from "node:crypto";
+import { SqliteStorage } from "../dist/storage/storage.js";
+const [root, now, mode] = process.argv.slice(2);
+if (!root || !now || !["provider", "tool"].includes(mode ?? "")) process.exit(2);
+const clock = { now: () => Number(now) }, ids = { next: (): string => randomUUID() };
+const storage = new SqliteStorage({ dataRoot: root, instanceId: randomUUID(), clock });
+const claim = storage.runAccess().claim(clock.now(), ids)!;
+const store = storage.protocolAccess(), call = store.begin(claim, ids.next(), storage.runAccess().context(claim), clock.now());
+const tool = { id: "crash-tool", type: "function" as const, function: { name: "synthetic_echo", arguments: '{"text":"合成"}' } };
+store.checkpoint(claim, call, { assistant: { role: "assistant", content: "中断前", reasoning_content: "synthetic-crash-reasoning", ...(mode === "tool" ? { tool_calls: [tool] } : {}) }, ...(mode === "tool" ? { finish_reason: "tool_calls" } : {}) }, mode === "tool" ? "completed" : "started", clock.now());
+storage.runAccess().append(claim, "中断前", clock.now());
+if (mode === "tool") store.beginTool(claim, call, ids.next(), tool, clock.now());
+process.send?.({ status: "persisted" });
+setInterval(() => {}, 1000);

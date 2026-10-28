@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>葵栖 · 小葵的像素小屋</title>
+  <meta name="description" content="在像素亮起的地方，和小葵聊聊今天。" />
+  <meta name="application-name" content="葵栖" />
+  <meta name="theme-color" content="#241827" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="葵栖 KuiNest" />
+  <meta property="og:title" content="葵栖 · 小葵的像素小屋" />
+  <meta property="og:description" content="在像素亮起的地方，和小葵聊聊今天。" />
+  <meta property="og:image" content="./assets/share-home-v1.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="600" />
+  <meta property="og:image:height" content="600" />
+  <meta property="og:image:alt" content="粉色像素窗口里的一朵小花，葵栖 KuiNest" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="葵栖 · 小葵的像素小屋" />
+  <meta name="twitter:description" content="在像素亮起的地方，和小葵聊聊今天。" />
+  <meta name="twitter:image" content="./assets/share-home-v1.png" />
+  <script type="module" src="./js/page-title.js"></script>
+  <style>html, body { background: #0b090e; }</style>
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/pink-icons-v1/chat-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/pink-icons-v1/chat-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="./assets/pink-icons-v1/chat-64.png" />
+  <link rel="apple-touch-icon" href="./assets/pink-icons-v1/chat-180.png" />
+  <link rel="stylesheet" href="./css/boot.css" />
+  <link rel="stylesheet" href="./css/desktop.css" />
+  <link rel="stylesheet" href="./css/desktop-ui.css" />
+  <link rel="stylesheet" href="./css/chat.css" />
+  <link rel="stylesheet" href="./css/game.css" />
+  <script type="importmap">
+    {"imports":{"@kuinest/contracts":"./shared/contracts/index.js","@kuinest/chat-client":"./shared/chat-client/index.js"}}
+  </script>
+</head>
+<body>
+  <!-- 桌面场景：图层由 js/desktop.js 构建（壁纸底层 + 未来 UI 图层） -->
+  <div id="desktop" hidden></div>
+
+  <!-- 启动层 -->
+  <div id="boot" role="status" aria-live="off" aria-label="小葵系统启动中">
+    <header class="boot-header">
+      <div class="boot-brand">
+        <svg class="boot-flower" viewBox="0 0 20 20" aria-hidden="true"><path fill="#f49abd" d="M8 0h4v4h4v3h4v5h-4v4h-4v4H7v-4H3v-4H0V7h4V3h4z"/><path fill="#ffe2ed" d="M8 8h4v4H8z"/></svg>
+        <div><h1 class="boot-title">XIAOKUI OS</h1><div class="boot-sub">PERSONAL OPERATING SYSTEM</div></div>
+      </div>
+      <div class="boot-edition">SAKURA / BOOT 01<span>PERSONAL WORKSPACE</span></div>
+    </header>
+    <div class="stage" aria-hidden="true"><canvas id="matrixCanvas"></canvas><canvas id="fxCanvas"></canvas></div>
+    <div class="boot-message">
+      <span class="boot-message-title" aria-live="polite">小葵，正在醒来。</span>
+      <span class="boot-message-en" aria-hidden="true">SAKURA CORE / AWAKENING</span>
+      <span class="boot-message-note">一片樱花，一个新的开始。</span>
+    </div>
+    <div class="boot-progress">
+      <div class="progress-label"><span id="progressLabel">正在准备桌面</span><span id="progressValue">0%</span></div>
+      <div class="track" role="progressbar" aria-label="实际启动资源加载进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="progressFill"></div></div>
+    </div>
+    <footer class="boot-footer"><div>小葵 OS · 樱花启动序列<small>A LITTLE SAKURA. A NEW BEGINNING.</small></div><button id="bootSkip" class="boot-skip" type="button">跳过动画 ↗</button></footer>
+  </div>
+
+  <noscript>
+    <div class="noscript-note">小葵，正在醒来。（需要启用 JavaScript 以完成启动）</div>
+  </noscript>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

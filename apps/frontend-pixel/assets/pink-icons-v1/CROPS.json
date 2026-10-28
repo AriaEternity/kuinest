@@ -1,0 +1,86 @@
+{
+  "sourceName": "original-sheet.png",
+  "sourceSha256": "96dac53392c9e33b885bd70adb244ec671953fb626d97bbe4799218a1778b4d0",
+  "files": [
+    {
+      "path": "01-chat.png",
+      "crop": {
+        "left": 27,
+        "top": 180,
+        "width": 353,
+        "height": 370
+      },
+      "sha256": "48f2fcb5fb94f4cded8428b4f64571f6d2b55884a5f75883263dfb744acf90df"
+    },
+    {
+      "path": "02-computer.png",
+      "crop": {
+        "left": 381,
+        "top": 180,
+        "width": 339,
+        "height": 367
+      },
+      "sha256": "6affc0a15b0071db011d23e2b72c8d1b204d5311a43bede266ca36530e255b2b"
+    },
+    {
+      "path": "03-folder.png",
+      "crop": {
+        "left": 720,
+        "top": 181,
+        "width": 348,
+        "height": 369
+      },
+      "sha256": "66122c1759db7fd49603dcfffd6e4f847438f5b2b9a913418a99368ab8d60b0c"
+    },
+    {
+      "path": "04-camera.png",
+      "crop": {
+        "left": 1071,
+        "top": 180,
+        "width": 351,
+        "height": 369
+      },
+      "sha256": "45b4e77e693aa4f1d4aabe29367dba27ccc6ad075e153c585f0e317874b7ead2"
+    },
+    {
+      "path": "05-diary.png",
+      "crop": {
+        "left": 39,
+        "top": 580,
+        "width": 341,
+        "height": 350
+      },
+      "sha256": "9a31b5fe06f88a9e5130a496c12d5ae1a9e6d30f553a8ca19f86cde064c439e5"
+    },
+    {
+      "path": "06-music.png",
+      "crop": {
+        "left": 381,
+        "top": 580,
+        "width": 339,
+        "height": 350
+      },
+      "sha256": "c77d587a8544ef1090ea3e5cc6c2fad2099c26ba644a528e75b76cddea3808f9"
+    },
+    {
+      "path": "07-settings.png",
+      "crop": {
+        "left": 721,
+        "top": 580,
+        "width": 349,
+        "height": 350
+      },
+      "sha256": "c32277f218e00a5891be1673ff0aa38f58d1a6440a16e9efb31f045480cb833b"
+    },
+    {
+      "path": "08-recycle.png",
+      "crop": {
+        "left": 1070,
+        "top": 580,
+        "width": 348,
+        "height": 350
+      },
+      "sha256": "6af386469583b1b6f6496915c114b16a4209ebb9a609faa7c797f26ef95d0b41"
+    }
+  ]
+}

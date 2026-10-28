@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "type": "kuisense_context_packet",
+  "generated_at_ms": 1790763000000,
+  "window": {
+    "start_ms": 1790759400000,
+    "end_ms": 1790763000000
+  },
+  "current": {
+    "package_name": "com.example.reader",
+    "app_name": "示例阅读器",
+    "screen_on": true,
+    "locked": false,
+    "charging": true,
+    "network_type": "Wi-Fi",
+    "media_playing": false
+  },
+  "recent_summary": "过去一小时主要使用了示例阅读器，期间网络保持为 Wi-Fi。",
+  "top_apps_last_hour": [
+    {
+      "package_name": "com.example.reader",
+      "app_name": "示例阅读器",
+      "duration_ms": 900000,
+      "foreground_count": 2
+    },
+    {
+      "package_name": "com.example.notes",
+      "app_name": "示例记事本",
+      "duration_ms": 300000,
+      "foreground_count": 1
+    }
+  ],
+  "media": {
+    "package_name": "com.example.music",
+    "app_name": "示例音乐",
+    "title": "示例歌曲",
+    "artist": "示例歌手",
+    "album": null,
+    "state": "paused",
+    "started_at_ms": 1790760000000,
+    "ended_at_ms": 1790760600000,
+    "track_change_count": 1
+  },
+  "network": {
+    "current_type": "Wi-Fi",
+    "recent_transitions": [
+      {
+        "timestamp_ms": 1790759700000,
+        "from": "Cellular",
+        "to": "Wi-Fi"
+      }
+    ]
+  },
+  "screen": {
+    "screen_on": true,
+    "locked": false,
+    "continuous_unlocked_ms": 1200000,
+    "last_locked_at_ms": 1790758500000,
+    "last_unlocked_at_ms": 1790758800000
+  },
+  "charging": {
+    "charging": true,
+    "source": "usb",
+    "last_started_at_ms": 1790761200000,
+    "last_stopped_at_ms": null
+  }
+}

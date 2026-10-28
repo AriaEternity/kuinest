@@ -1,0 +1,1 @@
+项目自有的AI辅助图标素材。original-sheet.png为图标原图；CROPS.json记录裁切位置与文件摘要；chat-16/32/64/180.png用于网页图标。自有素材按仓库MIT许可提供。

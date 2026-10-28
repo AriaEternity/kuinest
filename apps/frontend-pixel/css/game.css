@@ -1,0 +1,154 @@
+/* 小葵快跑：复用OS字体；容器查询同时适配手机与缩窄的桌面窗口。 */
+.pw-content.run-content {position:relative;isolation:isolate;display:block;padding:0;overflow:auto;min-width:0;min-height:0;background:#17101e;}
+.run-app {font-family:var(--xk-font,ui-monospace,monospace);color:#f8e3ed;padding:18px;max-width:1120px;margin:auto;width:100%;box-sizing:border-box;container-type:inline-size;}
+.run-app * {box-sizing:border-box;}
+.run-top {display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px;}
+.run-eyebrow {color:#be91ad;font-size:10px;letter-spacing:2px;}
+.run-top h1 {margin:7px 0 0;font-size:22px;line-height:1.25;letter-spacing:2px;font-weight:normal;}
+.run-top h1 span {margin-left:12px;color:#b08ba8;font-size:12px;letter-spacing:1px;}
+.run-best {display:grid;text-align:right;gap:4px;color:#b695b0;font-size:10px;white-space:nowrap;}
+.run-best strong {color:#f7c8d9;font:20px/1.2 var(--xk-font,monospace);letter-spacing:2px;}
+.run-stage {position:relative;width:100%;aspect-ratio:2/1;overflow:hidden;border:2px solid #916280;box-shadow:0 0 0 2px #26182b,4px 4px 0 #08060c;background:#392c4e;}
+.run-stage canvas {display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:none;outline-offset:-5px;}
+.run-stage canvas:focus-visible {outline:2px dashed #fbd9ed;}
+.run-hud {position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:18px;padding:13px 16px 7px;color:#ffebf3;font-size:11px;pointer-events:none;background:linear-gradient(#231529b0,transparent);text-shadow:1px 1px #241328;}
+.run-hud b {font-weight:normal;color:#ffe0a9;}
+.run-hud strong {margin-left:auto;font-weight:normal;font-size:16px;letter-spacing:2px;}
+.run-progress {position:absolute;top:44px;left:16px;right:16px;pointer-events:none;color:#f4d8e8;font-size:9px;line-height:1.5;text-shadow:1px 1px #241328;}
+.run-progress>div:first-child {display:flex;justify-content:space-between;gap:10px;}
+.run-progress-track {height:3px;background:#20122590;margin-top:4px;}
+.run-progress-track i {display:block;width:0;height:100%;background:#f9c5d5;}
+.run-toast {position:absolute;top:86px;left:50%;transform:translateX(-50%);max-width:90%;width:max-content;pointer-events:none;padding:8px 12px;font-size:11px;line-height:1.5;background:#28182deb;border:1px solid #dbb294;color:#ffe1b6;text-align:center;}
+.run-toast[hidden] {display:none;}
+.run-overlay {position:absolute;inset:0;display:flex;justify-content:center;align-items:center;padding:20px;background:#1b14204a;}
+.run-overlay[hidden] {display:none;}
+.run-card {width:min(380px,100%);padding:20px 24px;text-align:center;background:#23162bec;border:2px solid #bc8aa7;box-shadow:inset 2px 2px #4c3247,inset -2px -2px #100a15,5px 5px #160d2280;}
+.run-card-label {font-size:9px;letter-spacing:3px;color:#b688a5;}
+.run-card h2 {font-size:22px;font-weight:normal;line-height:1.4;margin:10px 0 7px;color:#ffe1ed;}
+.run-card p {font-size:12px;line-height:1.7;color:#cba9bf;margin:0 0 13px;}
+.run-app button,.run-help-layer button {font:12px/1.4 var(--xk-font,monospace);color:#ead0e0;cursor:pointer;background:#271b2f;border:2px solid #73536d;box-shadow:inset 1px 1px #503548,inset -1px -1px #160e1d;padding:9px 13px;min-height:40px;touch-action:manipulation;}
+.run-app button:hover,.run-help-layer button:hover {color:#fff0f6;border-color:#d1a1be;}
+.run-app button:focus-visible,.run-help-layer button:focus-visible {outline:2px dashed #ffd6eb;outline-offset:3px;}
+.run-app button:disabled {opacity:.55;cursor:wait;}
+.run-modes {display:flex;gap:8px;margin:0 0 12px;}
+.run-modes[hidden] {display:none;}
+.run-modes button {flex:1;min-width:0;padding:7px 6px;font-size:11px;}
+.run-modes button span {display:block;font-size:9px;line-height:1.5;color:#b896ad;margin-top:3px;}
+.run-modes button[aria-pressed=true] {border-color:#efc2d6;background:#54364e;color:#fff1f5;}
+.run-app .run-primary,.run-help-dialog .run-primary {display:block;width:100%;background:#d9a1b9;border-color:#f4cfdd;color:#301d31;box-shadow:inset 2px 2px #f8d6e3,inset -2px -2px #96647e;font-size:14px;padding:10px;}
+.run-card-tip {display:block;margin-top:12px;font-size:10px;line-height:1.7;color:#bda2b4;}
+.run-strip {display:flex;justify-content:space-between;gap:10px;font-size:10px;line-height:1.5;margin-top:12px;color:#bba9cc;}
+.run-strip [data-active=true] {color:#ffe0a9;}
+.run-controls {display:flex;align-items:center;gap:10px;margin-top:10px;}
+.run-controls .run-jump {margin-right:auto;min-width:160px;color:#f6d8e6;border-color:#b47f9e;}
+.run-jump span {font-size:10px;color:#b291a5;margin-left:10px;}
+.run-footer {display:flex;justify-content:space-between;gap:12px;font-size:10px;color:#bc96b0;margin-top:11px;line-height:1.8;}
+.run-footer [data-state] {color:#e6bfd4;}
+.run-guide {font-size:10px;line-height:1.8;color:#bfa2b8;margin-top:11px;border-top:1px solid #483248;padding-top:8px;}
+.run-guide summary {cursor:pointer;min-height:28px;line-height:28px;color:#ddbbd0;}
+.run-guide summary:focus-visible {outline:2px dashed #ffd6eb;outline-offset:2px;}
+.run-guide p {margin:8px 0 0;}
+.run-missions {display:grid;gap:4px;margin-top:7px;}
+.run-missions .done {color:#c2e6c8;}
+.run-local-note {font-size:9px;color:#94718c;margin:7px 0 0;line-height:1.8;}
+@container(max-width:600px) {
+  .run-top {margin-bottom:11px;gap:8px;}
+  .run-top h1 {font-size:20px;}
+  .run-top h1 span {display:block;margin:5px 0 0;font-size:11px;}
+  .run-eyebrow {font-size:9px;letter-spacing:1px;}
+  .run-best strong {font-size:17px;}
+  .run-stage {aspect-ratio:1.35/1;}
+  .run-overlay {padding:12px;}
+  .run-card {padding:12px 14px;}
+  .run-card h2 {font-size:18px;margin:6px 0;}
+  .run-card p {font-size:11px;line-height:1.5;margin-bottom:9px;}
+  .run-modes {margin-bottom:9px;gap:6px;}
+  .run-modes button {padding:5px 4px;min-height:44px;}
+  .run-card-tip {font-size:9px;margin-top:8px;}
+  .run-app .run-primary {font-size:12px;min-height:44px;padding:8px;}
+  .run-controls {gap:7px;}
+  .run-controls .run-jump {min-width:0;flex:1;}
+  .run-controls button {padding:10px 9px;min-height:44px;}
+  .run-jump span {display:none;}
+  .run-footer {flex-direction:column;gap:2px;}
+  .run-hud {gap:12px;padding:10px;font-size:10px;}
+  .run-progress {top:38px;left:10px;right:10px;}
+  .run-toast {top:74px;font-size:10px;padding:7px;}
+  .run-strip {font-size:9px;gap:6px;}
+}
+@media(max-width:600px) {.run-app {padding:12px;}}
+@media(prefers-reduced-motion:reduce) {.run-app *, .run-app *::before {scroll-behavior:auto;}}
+
+/* 游戏室入口与玩法说明：仅游戏应用使用。 */
+.pw-content.game-room-content {display:block;padding:0;min-height:0;overflow:auto;background:#19101f;}
+.game-room {font-family:var(--xk-font,monospace);padding:24px;color:#f5ddeb;min-height:100%;display:flex;flex-direction:column;}
+.room-eyebrow {font-size:9px;letter-spacing:3px;color:#b58da7;}
+.game-room h1 {font-weight:normal;font-size:22px;letter-spacing:2px;margin:10px 0;}
+.game-room header p {font-size:11px;color:#be9caf;line-height:1.8;margin:0;}
+.room-library {display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;padding:22px 0;flex:1;align-content:start;}
+.room-game {font:12px/1.7 var(--xk-font,monospace);color:#f7deeb;border:2px solid transparent;background:transparent;padding:14px 8px;cursor:pointer;display:flex;align-items:center;flex-direction:column;gap:7px;touch-action:manipulation;}
+.room-game img {image-rendering:pixelated;object-fit:contain;}
+.room-game strong {font-weight:normal;letter-spacing:1px;}
+.room-game span {font-size:9px;color:#bda0b7;}
+.room-game:hover,.room-game[aria-pressed=true] {background:#392638;border-color:#af7f9f;box-shadow:inset 2px 2px #61415a,inset -2px -2px #201524;}
+.room-game:focus-visible {outline:2px dashed #ffd6eb;outline-offset:3px;}
+.game-room footer {display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:9px;color:#a9879f;line-height:1.8;border-top:1px solid #493147;padding-top:11px;}
+.handheld-game .pw-max {display:none;}
+.run-rotate-note {font-size:10px;line-height:1.6;color:#ffe1b2;border:1px solid #775a72;background:#382337;padding:7px 9px;margin:0 0 10px;}
+.run-rotate-note[hidden] {display:none;}
+.run-content.run-help-open {overflow:hidden;}
+.run-content:not(.pw-content) {position:relative;}
+.run-help-layer,.run-help-layer * {box-sizing:border-box;}
+.run-help-layer {position:absolute;inset:0;z-index:10;display:grid;place-items:center;padding:12px;background:#0c0713a6;overflow:hidden;}
+.run-help-layer[hidden] {display:none;}
+.run-help-dialog {font:12px/1.8 var(--xk-font,monospace);display:flex;flex-direction:column;width:min(430px,100%);max-height:100%;min-height:0;margin:0;color:#edcedf;background:#24162d;border:2px solid #b98ba7;padding:22px;box-shadow:inset 2px 2px #55384d,inset -2px -2px #110b18,6px 6px #10091880;}
+.run-help-body {min-height:0;overflow:auto;overscroll-behavior:contain;}
+.run-help-dialog>.run-primary {flex-shrink:0;margin-top:8px;}
+.run-help-body:focus-visible {outline:1px dashed #c99eb9;outline-offset:2px;}
+.run-help-dialog h2 {font-weight:normal;font-size:20px;line-height:1.4;color:#ffe2ee;margin:8px 0 15px;}
+.run-help-dialog ul {padding-left:20px;margin:0 0 12px;}
+.run-help-dialog li {margin:5px 0;}
+.run-help-dialog p {margin:10px 0 14px;color:#bea0b6;font-size:11px;}
+.run-help-dialog .run-help-mobile {color:#ffe2b6;background:#392834;padding:10px;font-size:11px;}
+.run-help-mobile[hidden] {display:none;}
+.run-help-dialog .run-primary {min-height:44px;}
+/* 横屏手机用左右布局，让画布与触控按钮同时在屏幕内。 */
+.run-app.compact-landscape {height:100%;max-width:none;padding:8px;display:grid;grid-template-columns:minmax(0,1fr) 116px;grid-template-rows:26px minmax(0,1fr) 18px;gap:5px 8px;}
+.compact-landscape .run-top {grid-column:1/3;grid-row:1;margin:0;gap:10px;}
+.compact-landscape .run-eyebrow {display:none;}
+.compact-landscape .run-top h1 {font-size:16px;margin:0;line-height:1;}
+.compact-landscape .run-top h1 span {display:inline;margin-left:9px;font-size:10px;}
+.compact-landscape .run-best {display:flex;gap:8px;align-items:center;font-size:9px;}
+.compact-landscape .run-best strong {font-size:15px;}
+.compact-landscape .run-stage {grid-row:2;grid-column:1;aspect-ratio:auto;height:100%;min-height:0;}
+.compact-landscape .run-controls {grid-row:2;grid-column:2;display:grid;align-items:stretch;grid-template-columns:1fr 1fr;grid-template-rows:minmax(60px,1fr) 44px 44px;margin:0;gap:6px;}
+.compact-landscape .run-controls button {min-height:44px;padding:4px;font-size:10px;}
+.compact-landscape .run-controls .run-jump {grid-column:1/3;min-width:0;margin:0;min-height:60px;font-size:14px;}
+.compact-landscape .run-controls [data-pause] {grid-column:1/3;}
+.compact-landscape .run-jump span {display:none;}
+.compact-landscape .run-strip {grid-row:3;grid-column:1/3;align-items:center;margin:0;font-size:9px;}
+.compact-landscape .run-guide,.compact-landscape .run-local-note,.compact-landscape .run-rotate-note {display:none;}
+.compact-landscape .run-footer {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+.compact-landscape .run-overlay {padding:8px;}
+.compact-landscape .run-card {width:min(340px,100%);padding:8px 12px;}
+.compact-landscape .run-card-label {font-size:8px;}
+.compact-landscape .run-card h2 {font-size:16px;margin:4px 0;line-height:1.3;}
+.compact-landscape .run-card p {font-size:10px;margin-bottom:6px;line-height:1.4;}
+.compact-landscape .run-modes {gap:6px;margin-bottom:7px;}
+.compact-landscape .run-modes button {min-height:40px;padding:4px;font-size:10px;}
+.compact-landscape .run-modes button span {font-size:8px;margin-top:1px;}
+.compact-landscape .run-primary {min-height:40px;padding:7px;font-size:12px;}
+.compact-landscape .run-card-tip {font-size:9px;line-height:1.4;margin-top:6px;}
+.compact-landscape .run-hud {padding:7px 10px;font-size:9px;gap:12px;}
+.compact-landscape .run-hud strong {font-size:13px;}
+.compact-landscape .run-progress {top:31px;left:10px;right:10px;font-size:8px;}
+.compact-landscape .run-toast {top:66px;padding:6px 9px;font-size:10px;}
+.run-content:not(.pw-content) .run-app.compact-landscape {height:calc(100dvh - 24px);}
+@media(max-height:480px) {
+  .run-help-dialog {padding:12px 16px;max-height:100%;font-size:11px;}
+  .run-help-dialog h2 {font-size:18px;margin:4px 0 9px;}
+  .run-help-dialog ul {margin-bottom:8px;}
+  .run-help-dialog li {margin:3px 0;}
+  .run-help-dialog p {margin:7px 0 10px;}
+  .run-help-dialog .run-help-mobile {padding:7px;}
+}

@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "id": "demo-message-assistant-001",
+      "conversationId": "demo-conversation-001",
+      "role": "assistant",
+      "content": "已收到这条演示消息。这里只用于检查界面。",
+      "status": "complete",
+      "createdAt": "2026-09-07T10:00:00+08:00",
+      "revision": 5,
+      "runId": "demo-run-001"
+    }
+  ],
+  "throughRevision": 5,
+  "hasMore": false
+}

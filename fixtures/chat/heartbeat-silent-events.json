@@ -1,0 +1,24 @@
+[
+  {
+    "runId": "demo-heartbeat-001",
+    "sequence": 1,
+    "occurredAt": "2026-09-08T10:00:00+08:00",
+    "type": "run.accepted",
+    "origin": "heartbeat",
+    "conversationId": "demo-conversation-001",
+    "replyId": "demo-hidden-assistant-001",
+    "acceptedAt": "2026-09-08T10:00:00+08:00"
+  },
+  {
+    "runId": "demo-heartbeat-001",
+    "sequence": 2,
+    "occurredAt": "2026-09-08T10:00:01+08:00",
+    "type": "run.started"
+  },
+  {
+    "runId": "demo-heartbeat-001",
+    "sequence": 3,
+    "occurredAt": "2026-09-08T10:00:02+08:00",
+    "type": "run.completed"
+  }
+]

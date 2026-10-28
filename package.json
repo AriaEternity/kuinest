@@ -1,0 +1,53 @@
+{
+  "name": "kuinest",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "workspaces": [
+    "apps/backend",
+    "packages/contracts",
+    "packages/chat-client"
+  ],
+  "engines": {
+    "node": ">=24.20.0 <25",
+    "npm": ">=11.19.0 <12"
+  },
+  "packageManager": "npm@11.19.0",
+  "scripts": {
+    "build": "node scripts/project.mjs build",
+    "typecheck": "node scripts/project.mjs typecheck",
+    "test:backend": "node scripts/project.mjs test",
+    "backend:dev": "node scripts/project.mjs dev",
+    "backend:start": "node scripts/project.mjs start",
+    "backend:check": "node scripts/project.mjs check",
+    "check:sqlite": "node scripts/check-sqlite.mjs",
+    "backend:backup": "node scripts/project.mjs backup",
+    "backend:restore": "node scripts/project.mjs restore",
+    "backend:owner:init": "node scripts/project.mjs owner-init",
+    "backend:owner:password": "node scripts/project.mjs owner-password",
+    "backend:auth:unlock": "node scripts/project.mjs auth-unlock",
+    "backend:private:owner-setup": "node scripts/project.mjs private-owner-setup",
+    "backend:private:activate": "node scripts/project.mjs private-activate",
+    "backend:private:check-runtime": "node scripts/project.mjs private-check-runtime",
+    "backend:private:backup": "node scripts/project.mjs private-backup",
+    "backend:private:restore": "node scripts/project.mjs private-restore",
+    "backend:private:owner-password": "node scripts/project.mjs private-owner-password",
+    "backend:private:auth-unlock": "node scripts/project.mjs private-auth-unlock",
+    "frontend:dev": "node apps/frontend-pixel/scripts/dev.mjs",
+    "frontend:build": "node apps/frontend-pixel/scripts/build.mjs",
+    "frontend:check": "node apps/frontend-pixel/scripts/check.mjs",
+    "test:frontend": "npm --prefix apps/frontend-pixel test",
+    "test": "npm run test:backend -- --stage=all && npm run test:frontend && node --test apps/backend/test/deepseek-flash-compat.test.mjs apps/backend/test/mimo-compat.test.mjs tests/public-runtime.test.mjs",
+    "runtime:init": "node scripts/init-runtime.mjs",
+    "check:public": "node scripts/check-public.mjs"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "9.6.0",
+    "@types/express": "5.0.6",
+    "@types/node": "24.13.3",
+    "ajv": "8.20.0",
+    "typescript": "6.0.3"
+  },
+  "description": "像素桌面与独立 AI 对话后端：持久会话、流式恢复和确认制长期记忆"
+}

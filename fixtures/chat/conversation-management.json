@@ -1,0 +1,18 @@
+{
+  "synthetic": true,
+  "renameRequest": { "title": "合成会话的新名字" },
+  "renamedConversation": {
+    "id": "synthetic-conversation",
+    "title": "合成会话的新名字",
+    "updatedAt": "2026-10-28T08:00:00.000Z",
+    "revision": 2
+  },
+  "busyError": {
+    "error": {
+      "code": "CONVERSATION_BUSY",
+      "message": "会话仍有正在处理的回复，请停止回复或等待结束后再删除。"
+    },
+    "requestId": "synthetic-request"
+  },
+  "deleteResponseStatus": 204
+}

@@ -1,0 +1,23 @@
+import type { ReasoningReplay } from "./replay.js";
+import type { ImportedImage } from "./images.js";
+import type { CharacterConfig, Profile, Entry } from "../../../apps/backend/dist/context/types.js";
+export type FileKind = "document" | "addition" | "memory" | "session" | "index" | "tasks";
+export type FileSpec = { path: string; kind: FileKind; sha256: string; bytes: number };
+export type Selection = { sessionId: string; leafId: string | null };
+export type Conversation = { key: string; history: Selection[] };
+export const compatibilityKeys = ["model", "thinking", "bootstrap", "reset", "compaction", "memory", "tools", "proactive", "multimodal"] as const;
+export type Scope = {
+  format: "kuinest-openclaw-v1"; sourceId: string; batchId: string; revision: number; parent: string | null;
+  agentId: "main"; mode: "synthetic" | "private"; sourceVersion: "2026.7.1-2";
+  migrationMode?: "fresh-start-v1"; removedMemories?: string[];
+  reviewedAdditions?: { reviewSha256: string; rollbackSha256: string; baselineReceiptSha256: string; baseline: { path: string; sha256: string }[]; files: { path: string; sha256: string; role: "USER" | "MEMORY" | "memory" }[] };
+  requireReasoning: boolean; reasoningReplay?: ReasoningReplay; files: { path: string; kind: FileKind }[]; conversations: Conversation[];
+  profile: Profile; config: CharacterConfig;
+  compatibility: Record<typeof compatibilityKeys[number], "verified" | "unverified" | "accepted_difference">;
+};
+export type Manifest = Omit<Scope, "files"> & { files: FileSpec[]; consistency: "double-read-matched"; capturedAt: number };
+export type Bundle = { manifest: Manifest; manifestBytes: Buffer; manifestHash: string; files: Map<string, Buffer> };
+export type RawEntry = { id: string; parentId: string | null; type: string; timestamp: string; [key: string]: unknown };
+export type Session = { id: string; header: Record<string, unknown>; entries: RawEntry[]; rawHashes: Map<string, string> };
+export type Mapped = { session: Session; entries: Entry[]; images: ImportedImage[]; gaps: Set<string> };
+export type Analysis = { bundle: Bundle; sessions: Map<string, Mapped>; gaps: string[]; records: number };

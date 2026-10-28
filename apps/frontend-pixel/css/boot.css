@@ -1,0 +1,108 @@
+/* 小葵 OS 樱花启动：横竖构图共用资源，加载百分比由实际任务驱动。 */
+@font-face {
+  font-family: 'Fusion Pixel 12px';
+  src: url('../assets/fonts/fusion-pixel-12px-proportional-zh_hans.otf.woff2') format('woff2');
+  font-display: swap;
+}
+:root {
+  --bg:#0b090e; --bg-deep:#121019; --pink:#e9b7c8; --pink-hi:#f7d7e6;
+  --pink-dim:#987489; --header:#b68aa1; --header-sub:#917386;
+  --message:#f2c2d7; --label:#b6a0ad; --label-value:#f0bbd4;
+  --track-border:#a17990; --track-bg:#30202b; --track-fill:#e8b2cd;
+}
+* {box-sizing:border-box;}
+html,body {margin:0;min-height:100%;background:var(--bg);}
+body {overflow:hidden;font-family:'Fusion Pixel 12px',ui-monospace,Consolas,monospace;-webkit-font-smoothing:antialiased;}
+#boot {
+  position:fixed;inset:0;z-index:10000;isolation:isolate;overflow:hidden;
+  background:#080810;color:#f3edf7;opacity:1;
+  --boot-side:clamp(20px,4.3vw,68px);
+}
+#boot.boot-handoff {background:transparent;}
+#boot.boot-handoff .boot-header,#boot.boot-handoff .boot-message,
+#boot.boot-handoff .boot-progress,#boot.boot-handoff .boot-footer,
+#boot.boot-handoff #fxCanvas {opacity:0;transition:opacity .26s ease;}
+.boot-handoff-logo {position:fixed;top:0;left:0;margin:0;z-index:10002;max-width:none;transform-origin:0 0;pointer-events:none;user-select:none;will-change:transform;}
+#desktop[data-boot-handoff] .desktop-logo {visibility:hidden;}
+#desktop[data-boot-handoff] {pointer-events:none;}
+#desktop[data-boot-handoff] .layer-icons,#desktop[data-boot-handoff] .layer-taskbar,
+#desktop[data-boot-handoff] .preview-note,#desktop[data-boot-handoff] .preview-badge {
+  opacity:var(--boot-ui-opacity,0);transform:translateY(var(--boot-ui-offset,4px));will-change:opacity,transform;
+}
+.stage {position:absolute;inset:0;z-index:-1;pointer-events:none;}
+.stage canvas {position:absolute;inset:0;width:100%;height:100%;display:block;}
+.boot-header {
+  position:absolute;left:var(--boot-side);right:var(--boot-side);
+  top:max(28px,calc(env(safe-area-inset-top,0px) + 18px));
+  display:flex;align-items:flex-start;justify-content:space-between;gap:20px;user-select:none;
+}
+.boot-brand {display:flex;align-items:center;gap:12px;}
+.boot-flower {width:19px;height:19px;image-rendering:pixelated;flex:none;}
+.boot-title {margin:0;font-size:12px;font-weight:400;letter-spacing:.3em;line-height:1.6;}
+.boot-sub {margin-top:5px;font-size:8px;letter-spacing:.14em;color:#95859a;line-height:1.6;}
+.boot-edition {text-align:right;font-size:9px;line-height:1.8;letter-spacing:.1em;color:#f49abd;}
+.boot-edition span {display:block;font-size:8px;color:#95859a;}
+.boot-message {
+  position:absolute;top:68%;left:50%;transform:translateX(-50%);width:calc(100% - 40px);
+  display:grid;gap:12px;text-align:center;margin:0;user-select:none;transition:opacity .16s ease;
+}
+.boot-message.is-changing {opacity:0;}
+.boot-message-title {font-size:26px;font-weight:400;line-height:1.4;color:#ffd4e4;}
+.boot-message-en {font-size:10px;letter-spacing:.18em;line-height:1.6;color:#f49abd;}
+.boot-message-note {font-size:11px;line-height:1.6;color:#95859a;}
+.boot-progress {
+  position:absolute;left:50%;transform:translateX(-50%);width:min(440px,calc(100% - 56px));
+  bottom:max(90px,calc(env(safe-area-inset-bottom,0px) + 74px));
+}
+.progress-label {display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:12px;font-size:10px;line-height:1.5;color:#a391a7;}
+#progressValue {color:#f49abd;font-variant-numeric:tabular-nums;}
+.progress-label.error #progressLabel {color:#ffd4e4;}
+.track {height:3px;background:repeating-linear-gradient(90deg,#30202b 0 8px,transparent 8px 12px);overflow:hidden;}
+.fill {height:100%;width:0;background:repeating-linear-gradient(90deg,#f49abd 0 8px,transparent 8px 12px);}
+.boot-footer {
+  position:absolute;left:var(--boot-side);right:var(--boot-side);
+  bottom:max(22px,calc(env(safe-area-inset-bottom,0px) + 14px));
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-top:14px;border-top:1px solid #35293d;color:#95859a;font-size:9px;line-height:1.6;
+}
+.boot-footer small {display:block;font-size:8px;letter-spacing:.12em;color:#807287;}
+.boot-skip {min-height:44px;padding:0 12px;margin:-8px -12px -8px 0;border:0;background:transparent;color:#d4b4c7;font:inherit;cursor:pointer;touch-action:manipulation;}
+.boot-skip:hover,.boot-skip:focus-visible {color:#ffd4e4;outline:1px solid #815168;outline-offset:-3px;}
+.noscript-note {position:fixed;inset:auto 16px 12vh;text-align:center;color:var(--message);font:14px/1.6 system-ui,sans-serif;z-index:10001;}
+@media (max-aspect-ratio:1/1) {
+  .boot-header {top:max(30px,calc(env(safe-area-inset-top,0px) + 20px));}
+  .boot-title {font-size:11px;letter-spacing:.23em;}
+  .boot-brand {gap:9px;}
+  .boot-sub {font-size:7px;letter-spacing:.05em;}
+  .boot-edition {font-size:8px;letter-spacing:0;}
+  .boot-edition span {font-size:7px;}
+  .boot-message {top:65.5%;gap:9px;}
+  .boot-message-title {font-size:23px;}
+  .boot-message-en {font-size:9px;letter-spacing:.12em;}
+  .boot-message-note {font-size:10px;}
+  .boot-progress {bottom:max(112px,calc(env(safe-area-inset-bottom,0px) + 92px));}
+  .boot-footer {font-size:9px;}
+  .boot-footer small {font-size:7px;letter-spacing:.04em;}
+}
+@media (max-height:650px) and (max-aspect-ratio:1/1) {
+  .boot-header {top:max(22px,calc(env(safe-area-inset-top,0px) + 12px));}
+  .boot-message {top:64%;gap:6px;}
+  .boot-message-title {font-size:21px;}
+  .boot-message-note {font-size:9px;}
+  .boot-progress {bottom:max(82px,calc(env(safe-area-inset-bottom,0px) + 68px));}
+  .progress-label {margin-bottom:8px;}
+  .boot-footer {bottom:max(16px,calc(env(safe-area-inset-bottom,0px) + 10px));padding-top:11px;}
+}
+@media (max-height:700px) and (min-aspect-ratio:1/1) {
+  .boot-header {top:max(14px,env(safe-area-inset-top,0px));}
+  .boot-message {top:64%;gap:3px;}
+  .boot-message-title {font-size:19px;}
+  .boot-message-en {font-size:8px;}
+  .boot-message-note {display:none;}
+  .boot-progress {bottom:max(58px,calc(env(safe-area-inset-bottom,0px) + 48px));width:min(360px,58vw);}
+  .progress-label {margin-bottom:6px;font-size:9px;}
+  .boot-footer {bottom:max(10px,env(safe-area-inset-bottom,0px));padding-top:9px;}
+  .boot-footer small {display:none;}
+}
+@media (prefers-reduced-motion:reduce) {#boot {transition:none;}}
+html[data-reduced-motion] #boot {transition:none;}

@@ -1,0 +1,23 @@
+[Unit]
+Description=KuiNest private chat
+After=network.target
+
+[Service]
+Type=simple
+User=kuinest
+Group=kuinest
+WorkingDirectory=/opt/kuinest
+EnvironmentFile=/etc/kuinest/runtime.env
+ExecStart=/usr/bin/node /opt/kuinest/apps/backend/dist/server.js
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/kuinest
+TimeoutStopSec=40
+
+[Install]
+WantedBy=multi-user.target

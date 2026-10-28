@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+<rect width="600" height="600" fill="#160f1c"/>
+<path stroke="#322237" stroke-width="1" d="M0 100H600M0 200H600M0 300H600M0 400H600M0 500H600M100 0V600M200 0V600M300 0V600M400 0V600M500 0V600"/>
+<path fill="#e6b7cc" d="M46 70h6v18h-6zM40 76h18v6H40zM546 496h6v18h-6zM540 502h18v6h-18z"/>
+<rect x="84" y="94" width="444" height="444" fill="#0a080d"/>
+<rect x="72" y="82" width="444" height="444" fill="#241827" stroke="#c493b0" stroke-width="4"/>
+<rect x="80" y="90" width="428" height="42" fill="#53334e"/>
+<text x="100" y="119" fill="#ffe3ec" font-family="monospace" font-size="20" letter-spacing="3">KUINEST</text>
+<path stroke="#ecc5d7" stroke-width="3" d="M444 116h13M470 102l14 14m0-14l-14 14"/>
+<g transform="translate(174 157) scale(4)" shape-rendering="crispEdges"><path fill="#a8bf91" d="M30 32h4v22h-4zM22 40h8v4h-8zM18 36h8v4h-8zM34 44h8v4h-8zM38 40h8v4h-8z"/>
+<path fill="#f1b5cd" d="M26 10h12v4h4v8h8v12h-8v8H30v-4h-8v-4h-8V22h8v-8h4z"/>
+<path fill="#f9d8b1" d="M26 22h12v4h4v8h-4v4H26v-4h-4v-8h4z"/>
+<path fill="#51304a" d="M27 27h3v3h-3zM35 27h3v3h-3zM30 33h5v2h-5z"/></g>
+<text x="294" y="437" text-anchor="middle" fill="#f7d4e4" font-family="monospace" font-size="32" letter-spacing="5">KUINEST</text>
+<text x="294" y="474" text-anchor="middle" fill="#c69db7" font-family="monospace" font-size="16" letter-spacing="1">a little pixel home</text>
+</svg>

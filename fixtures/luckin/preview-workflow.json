@@ -1,0 +1,37 @@
+{
+  "syntheticOnly": true,
+  "note": "全部商品/价格为纯合成；选中操作码3来自官方工具文档，不复制真实账户数据。",
+  "operation": 3,
+  "detail": {
+    "productId": 90002,
+    "skuCode": "SYNTHETIC-BASE",
+    "attributes": [
+      {
+        "attributeId": 101,
+        "name": "合成温度",
+        "options": [
+          {
+            "attributeId": 102,
+            "name": "合成冷饮",
+            "operation": 3
+          }
+        ]
+      }
+    ]
+  },
+  "switched": {
+    "productId": 90002,
+    "skuCode": "SYNTHETIC-COLD",
+    "selectedAttributes": [
+      "合成冷饮"
+    ]
+  },
+  "preview": {
+    "totalInitialPrice": "29.90",
+    "privilegeMoney": "20.00",
+    "discountPrice": "9.90",
+    "couponCodeList": [
+      "SYNTHETIC-COUPON-ONE"
+    ]
+  }
+}

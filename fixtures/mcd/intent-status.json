@@ -1,0 +1,32 @@
+{
+  "synthetic": true,
+  "notice": "独立纯合成阶段样本，不是真实订单；不含批准凭据",
+  "expiredPreview": {
+    "state": "PREVIEWED",
+    "serverTime": "2030-01-02T03:10:00.000Z",
+    "quoteExpired": true,
+    "approvalStatus": "expired",
+    "creationStatus": "not_submitted",
+    "officialOrderKnown": false,
+    "nextAction": "recalculate"
+  },
+  "approved": {
+    "state": "APPROVED",
+    "serverTime": "2030-01-02T03:04:00.000Z",
+    "quoteExpired": false,
+    "approvalStatus": "approved",
+    "approvalExpiresAt": "2030-01-02T03:06:00.000Z",
+    "creationStatus": "not_submitted",
+    "officialOrderKnown": false,
+    "nextAction": "submit"
+  },
+  "unknownAfterExpiry": {
+    "state": "UNKNOWN",
+    "serverTime": "2030-01-02T03:10:00.000Z",
+    "quoteExpired": true,
+    "approvalStatus": "consumed",
+    "creationStatus": "unknown",
+    "officialOrderKnown": false,
+    "nextAction": "owner_reconciliation"
+  }
+}

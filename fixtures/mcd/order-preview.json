@@ -1,0 +1,45 @@
+{
+  "synthetic": true,
+  "notice": "纯合成样本，不是真实麦当劳订单或门店",
+  "request": {
+    "storeCode": "SYNTHETIC-STORE",
+    "orderType": 1,
+    "beType": 1,
+    "needTableware": false,
+    "items": [
+      {
+        "productCode": "SYNTHETIC-BURGER",
+        "quantity": 1
+      }
+    ]
+  },
+  "response": {
+    "quoteId": "10000000-0000-4000-8000-000000000001",
+    "state": "QUOTED",
+    "currency": "CNY",
+    "unit": "yuan",
+    "shop": {
+      "storeCode": "SYNTHETIC-STORE",
+      "name": "合成测试餐厅",
+      "address": "合成地址"
+    },
+    "products": [
+      {
+        "code": "SYNTHETIC-BURGER",
+        "name": "合成汉堡",
+        "quantity": 1,
+        "configuration": []
+      }
+    ],
+    "totalPrice": 16,
+    "discount": 0,
+    "payable": 16,
+    "takeWayList": [
+      {
+        "code": "SYNTHETIC-TAKEOUT",
+        "title": "合成外带"
+      }
+    ],
+    "creationEnabled": false
+  }
+}

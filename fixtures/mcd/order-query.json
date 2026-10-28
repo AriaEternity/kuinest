@@ -1,0 +1,57 @@
+{
+  "synthetic": true,
+  "notice": "纯合成合同样本，不是真实订单或个人记录；取餐信息与独立支付证据分开处理。",
+  "cases": [
+    {
+      "name": "官方完成状态有取餐码但无独立支付证据",
+      "request": {
+        "intentId": "10000000-0000-4000-8000-000000000001"
+      },
+      "upstreamData": {
+        "orderId": "SYNTHETIC-ORDER-1",
+        "orderStatus": "订单已完成",
+        "status": "40",
+        "pickupCode": "SYNTHETIC-PICKUP-1",
+        "payId": "SYNTHETIC-PAY-ID",
+        "realTotalAmount": "16.00"
+      },
+      "responseFields": {
+        "officialOrderStatus": "订单已完成",
+        "officialStatus": "40",
+        "normalizedOrderStatus": "COMPLETED",
+        "orderStatusName": "订单已完成",
+        "paymentStatus": "unverified",
+        "paymentVerification": {
+          "status": "unverified",
+          "source": "not_provided"
+        },
+        "orderStatusPaymentHint": "not_provided",
+        "pickupInformationStatus": "available",
+        "pickupCode": "SYNTHETIC-PICKUP-1"
+      }
+    },
+    {
+      "name": "官方待支付状态有预分配字段仍隐藏",
+      "request": {
+        "intentId": "10000000-0000-4000-8000-000000000001"
+      },
+      "upstreamData": {
+        "orderId": "SYNTHETIC-ORDER-1",
+        "orderStatus": "待支付",
+        "pickupCode": "SYNTHETIC-PICKUP-1"
+      },
+      "responseFields": {
+        "officialOrderStatus": "待支付",
+        "normalizedOrderStatus": "PENDING_PAYMENT",
+        "orderStatusName": "待支付",
+        "paymentStatus": "pending",
+        "paymentVerification": {
+          "status": "unverified",
+          "source": "not_provided"
+        },
+        "orderStatusPaymentHint": "pending",
+        "pickupInformationStatus": "withheld"
+      }
+    }
+  ]
+}

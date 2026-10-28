@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "characterId": "synthetic-character",
+      "revision": 1,
+      "content": "合成用户喜欢蓝色方块。",
+      "contentSha256": "3f6f131d7fba3bcc3bf7fcad5aeb170f38fe1dc48a13b99db5d7f750bee9a46e",
+      "status": "pending",
+      "source": "user",
+      "createdAt": "2026-09-24T00:00:00.000Z",
+      "updatedAt": "2026-09-24T00:00:00.000Z",
+      "decidedAt": null,
+      "memoryKey": null
+    }
+  ],
+  "nextCursor": null
+}

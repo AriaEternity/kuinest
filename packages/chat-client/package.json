@@ -1,0 +1,16 @@
+{
+  "name": "@kuinest/chat-client",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@kuinest/contracts": "0.0.0"
+  }
+}

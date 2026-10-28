@@ -1,0 +1,400 @@
+/* 小葵 OS 桌面 UI 框架 · 设计令牌与像素风组件样式
+   配色沿用启动页任务书 3.2；像素风 = 像素字体 + 直角描边 + 经典高光/阴影斜面 */
+
+:root {
+  --xk-bg: #0b090e;
+  --xk-panel: #17121d;
+  --xk-panel-deep: #100c15;
+  --xk-border: #6b4f60;
+  --xk-border-hi: #a17990;
+  --xk-pink: #e9b7c8;
+  --xk-pink-hi: #f7d7e6;
+  --xk-pink-dim: #987489;
+  --xk-text: #f2d9e4;
+  --xk-text-dim: #a68b99;
+  --xk-shadow: rgba(0, 0, 0, 0.45);
+  --xk-bevel-light: #33242f; /* 斜面受光（上/左） */
+  --xk-bevel-dark: #08060b;  /* 斜面背光（下/右） */
+  --xk-font: 'Fusion Pixel 12px', ui-monospace, SFMono-Regular, Consolas,
+    'Microsoft YaHei', monospace;
+  --xk-taskbar-h: 40px;
+}
+
+/* ---------- 图层事件规则：层本身不拦截，交互组件自行开启 ---------- */
+#desktop .desktop-layer { pointer-events: none; }
+#desktop .desktop-icon,
+#desktop .pixel-window,
+#desktop .taskbar,
+#desktop .context-menu,
+#desktop .start-menu { pointer-events: auto; }
+
+/* ---------- 通用像素元素 ---------- */
+
+/* 经典像素斜面：上/左受光、下/右背光 + 外投影 */
+.xk-pixel-box {
+  background: var(--xk-panel);
+  border: 2px solid var(--xk-border);
+  box-shadow:
+    inset 2px 2px 0 0 var(--xk-bevel-light),
+    inset -2px -2px 0 0 var(--xk-bevel-dark),
+    4px 4px 0 0 var(--xk-shadow);
+}
+
+.xk-btn {
+  font-family: var(--xk-font);
+  font-size: 12px;
+  color: var(--xk-text);
+  background: var(--xk-panel-deep);
+  border: 2px solid var(--xk-border);
+  box-shadow:
+    inset 1px 1px 0 0 var(--xk-bevel-light),
+    inset -1px -1px 0 0 var(--xk-bevel-dark);
+  padding: 0 10px;
+  height: 26px;
+  cursor: pointer;
+  user-select: none;
+}
+.xk-btn:hover { border-color: var(--xk-border-hi); color: var(--xk-pink-hi); }
+.xk-btn:focus-visible, .menu-item:focus-visible, .desktop-icon:focus-visible,
+.pw-titlebar:focus-visible { outline: 2px dotted var(--xk-pink); outline-offset: -3px; }
+/* 按下：斜面反转（像素游戏的经典"凹陷"反馈），不做位移 */
+.xk-btn:active {
+  box-shadow:
+    inset -1px -1px 0 0 var(--xk-bevel-light),
+    inset 1px 1px 0 0 var(--xk-bevel-dark);
+  background: #0c0810;
+}
+
+/* ---------- 桌面图标 ---------- */
+.layer-icons { z-index: 1; }
+
+.desktop-icon {
+  position: absolute;
+  width: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 2px 4px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none; /* 触摸设备上允许拖动图标而不滚动页面 */
+  font-family: var(--xk-font);
+}
+
+.desktop-icon.dragging {
+  z-index: 5;
+  opacity: 0.85;
+  cursor: grabbing;
+}
+
+.desktop-icon .icon-img {
+  width: 48px;
+  height: 48px;
+  image-rendering: pixelated;
+  display: grid;
+  place-items: center;
+}
+.desktop-icon .icon-img img { width: 48px; height: 48px; object-fit: contain; }
+
+
+.desktop-icon .icon-label {
+  font-size: 12px;
+  color: var(--xk-text);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  background: rgba(11, 9, 14, 0.55); /* 深色底衬，保证亮壁纸区域可读 */
+  padding: 1px 5px;
+  max-width: 76px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.desktop-icon.selected .icon-label {
+  background: var(--xk-pink-dim);
+  color: #fff;
+  outline: 1px dotted var(--xk-pink-hi);
+}
+.desktop-icon.selected .icon-img {
+  outline: 1px dotted var(--xk-pink-hi);
+}
+
+/* ---------- 像素窗口 ---------- */
+.layer-windows { z-index: 2; }
+
+/* 阶梯像素角：切掉四角 2px，形成像素游戏窗框的台阶轮廓 */
+.pixel-window,
+.start-menu,
+.context-menu {
+  clip-path: polygon(
+    2px 0, calc(100% - 2px) 0, 100% 2px,
+    100% calc(100% - 2px), calc(100% - 2px) 100%, 2px 100%,
+    0 calc(100% - 2px), 0 2px
+  );
+}
+
+/* 窗口弹出：两帧跳变，像老游戏的窗口开启 */
+@keyframes xk-pop {
+  0% { transform: scale(0.94); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.pixel-window {
+  position: absolute;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--xk-font);
+  animation: xk-pop 140ms steps(2) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-window { animation: none; }
+}
+
+.pw-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  flex-shrink: 0;
+  padding: 0 4px 0 8px;
+  background: var(--xk-panel-deep);
+  border-bottom: 2px solid var(--xk-border);
+  user-select: none; /* 光标由 JS 按区域管理：标题栏 move / 边缘 resize */
+  touch-action: none;
+}
+
+.pixel-window.active .pw-titlebar {
+  /* 激活态：像素条纹抖动质感 */
+  background: repeating-linear-gradient(90deg, #241827 0 2px, #1a121f 2px 4px);
+  border-bottom-color: var(--xk-border-hi);
+}
+
+.pw-icon { width: 16px; height: 16px; display: grid; place-items: center; }
+.pw-icon svg { width: 16px; height: 16px; }
+
+.pw-title {
+  flex: 1;
+  font-size: 12px;
+  color: var(--xk-text-dim);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.pixel-window.active .pw-title { color: var(--xk-pink-hi); }
+
+.pw-btn {
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  color: var(--xk-text-dim);
+}
+.pw-btn svg { width: 10px; height: 10px; }
+.pixel-window.active .pw-btn { color: var(--xk-pink); }
+
+.pw-content {
+  flex: 1;
+  min-height: 160px;
+  background: var(--xk-panel);
+  color: var(--xk-text);
+  font-size: 12px;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  /* 内容区内凹（背光在上/左），与窗口凸起斜面相对 */
+  box-shadow:
+    inset 2px 2px 0 0 var(--xk-bevel-dark),
+    inset -2px -2px 0 0 var(--xk-bevel-light);
+}
+
+/* 像素风滚动条 */
+.pw-content::-webkit-scrollbar { width: 12px; height: 12px; }
+.pw-content::-webkit-scrollbar-track { background: var(--xk-panel-deep); }
+.pw-content::-webkit-scrollbar-thumb {
+  background: var(--xk-border);
+  border: 2px solid var(--xk-panel-deep);
+  box-shadow: inset 1px 1px 0 0 var(--xk-bevel-light);
+}
+.pw-content::-webkit-scrollbar-thumb:hover { background: var(--xk-border-hi); }
+.pw-content::-webkit-scrollbar-corner { background: var(--xk-panel-deep); }
+
+.app-placeholder {
+  text-align: center;
+  color: var(--xk-text-dim);
+  line-height: 2;
+}
+.app-placeholder .icon-img { width: 48px; height: 48px; margin: 0 auto; }
+.app-placeholder .icon-img svg { width: 48px; height: 48px; }
+.app-placeholder .app-name { color: var(--xk-text); }
+.app-placeholder .app-tagline { color: var(--xk-pink); }
+.app-placeholder .app-wip { opacity: 0.55; }
+.app-placeholder .app-about { color: var(--xk-text-dim); opacity: 0.8; }
+
+/* ---------- 任务栏 ---------- */
+.layer-taskbar { z-index: 3; }
+
+.taskbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--xk-taskbar-h);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  background: rgba(16, 12, 21, 0.94);
+  border-top: 2px solid var(--xk-border);
+  font-family: var(--xk-font);
+}
+
+.tb-start {
+  height: 28px;
+  font-size: 12px;
+  color: var(--xk-pink);
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.tb-start .pw-icon svg { width: 16px; height: 16px; }
+
+.tb-apps {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  height: 100%;
+}
+.tb-apps::-webkit-scrollbar { display: none; }
+.tb-app-item { display: flex; flex: 0 0 auto; }
+.tb-start, .tb-tray { flex-shrink: 0; }
+
+.tb-app-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  max-width: 168px;
+  font-size: 12px;
+}
+.tb-app-btn .tb-label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tb-app-btn .pw-icon { width: 16px; height: 16px; }
+
+.tb-app-btn.active {
+  border-color: var(--xk-pink);
+  color: var(--xk-pink-hi);
+  box-shadow:
+    inset 1px 1px 0 0 rgba(255, 255, 255, 0.08),
+    inset -1px -1px 0 0 rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(233, 183, 200, 0.25);
+}
+.tb-app-btn.minimized { color: var(--xk-text-dim); }
+.tb-app-btn.has-attention { border-color: var(--xk-pink); }
+.tb-app-btn.has-attention::after { content: ''; position: absolute; top: 2px; right: 2px; width: 5px; height: 5px; background: var(--xk-pink-hi); box-shadow: 0 0 0 1px var(--xk-panel-deep); }
+.tb-attention-status { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- 桌面设置 ---------- */
+.pw-content.settings-content { display: block; place-items: normal; min-width: 0; min-height: 0; padding: 20px; line-height: 1.8; }
+.settings-heading { margin-bottom: 12px; }
+.settings-kicker { color: var(--xk-pink-dim); font-size: 12px; }
+.settings-heading h1 { margin: 6px 0 4px; font-size: 16px; font-weight: normal; color: var(--xk-pink-hi); }
+.settings-heading p { margin: 0; color: var(--xk-text-dim); }
+.setting-row { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--xk-border); cursor: pointer; }
+.setting-copy { flex: 1; min-width: 0; }
+.setting-title, .setting-help { display: block; }
+.setting-title { color: var(--xk-text); }
+.setting-help { margin-top: 3px; color: var(--xk-text-dim); }
+.setting-row input { width: 17px; height: 17px; margin: 0; accent-color: var(--xk-pink); flex-shrink: 0; }
+.setting-row input:focus-visible, .setting-row select:focus-visible { outline: 2px dotted var(--xk-pink); outline-offset: 3px; }
+.setting-motion { flex-wrap: wrap; }
+.setting-motion .pixel-input { width: 144px; flex-shrink: 0; }
+.settings-motion-note { margin: 8px 0 0; color: var(--xk-pink-dim); }
+.settings-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.settings-notice { color: var(--xk-pink); min-height: 24px; margin: 10px 0 0; }
+
+html[data-reduced-motion] .pixel-window,
+html[data-reduced-motion] .typing-cursor,
+html[data-reduced-motion] .waiting-reply .waiting-dot { animation: none; }
+html[data-reduced-motion] #boot { transition: none; }
+
+/* 右侧系统状态区 */
+.tb-tray {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  height: 100%;
+}
+
+.tb-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  line-height: 1.25;
+  font-size: 12px;
+  color: var(--xk-text);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+.tb-clock .tb-time { color: var(--xk-pink-hi); }
+.tb-clock .tb-date { color: var(--xk-text-dim); }
+
+/* ---------- 开始菜单 / 右键菜单 ---------- */
+.start-menu,
+.context-menu {
+  position: absolute;
+  min-width: 148px;
+  padding: 4px;
+  z-index: 5;
+  font-family: var(--xk-font);
+}
+
+.start-menu { left: 8px; bottom: calc(var(--xk-taskbar-h) + 4px); }
+
+.menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--xk-text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--xk-font);
+}
+.menu-item:hover { background: var(--xk-pink-dim); color: #fff; }
+
+/* ---------- 小视口适配 ---------- */
+@media (max-width: 720px) {
+  .desktop-icon { width: 64px; }
+  .pw-max { display: none; }
+  .tb-app-btn { max-width: 36px; padding: 0 5px; }
+  .tb-app-btn .tb-label { display: none; } /* 小屏只留图标 */
+}
+
+/* 关于窗口：公开主页链接与用户明确要求展示的联系方式。 */
+.about-home { text-align: center; line-height: 1.7; }
+.about-home-title { margin: 4px 0 6px; color: var(--xk-pink-hi); font-size: 16px; }
+.about-home-note, .about-home-version { color: var(--xk-text-dim); font-size: 12px; }
+.about-social { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 18px 0; }
+.about-social a { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 14px; text-decoration: none; }
+.about-contact { border-top: 1px solid var(--xk-border); padding-top: 12px; color: var(--xk-text-dim); font-size: 12px; }
+.about-contact p { margin: 4px 0; color: var(--xk-text); font-size: 14px; }
+.about-qq { user-select: text; cursor: text; }
+.about-home-version { margin: 12px 0 0; }

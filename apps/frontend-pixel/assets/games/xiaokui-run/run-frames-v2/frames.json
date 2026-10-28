@@ -1,0 +1,235 @@
+{
+  "version": 2,
+  "frameCount": 8,
+  "frameSize": 256,
+  "columns": 4,
+  "rows": 2,
+  "defaultFps": 12,
+  "method": "全身逐帧播放，仅统一画布平移与缩放，不做关节拼接或重影混合",
+  "files": [
+    {
+      "file": "frame-01.png",
+      "phase": "contact",
+      "sourceSha256": "69d8e2e2c4bde0c46ce7ddc78c15a9243480c716defe6089519ecd1e7bf605ea",
+      "sha256": "fabe4a840035e592381427293c358bd1cb08cef581d87e260905d40682517d75",
+      "size": [
+        256,
+        256
+      ],
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alignment": {
+        "anchor": "独立黑色十字发夹",
+        "sourceCenter": {
+          "x": 662.5248021617448,
+          "y": 451.1177378884385,
+          "area": 5181
+        },
+        "translate": [
+          0,
+          0
+        ],
+        "scale": 0.20414673046251994
+      },
+      "alpha": true
+    },
+    {
+      "file": "frame-02.png",
+      "phase": "compression",
+      "sourceSha256": "a4002660f6a554aea58ca2d21f50bfeebefa79ecea97028a7fb870f051b5e222",
+      "sha256": "f084310798d597bb5c29917d85bfa50473bf9c52e5382d7ff56e5dab3288f5c9",
+      "size": [
+        256,
+        256
+      ],
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alignment": {
+        "anchor": "独立黑色十字发夹",
+        "sourceCenter": {
+          "x": 662.3544690603514,
+          "y": 452.15049656226125,
+          "area": 5236
+        },
+        "translate": [
+          0,
+          -1
+        ],
+        "scale": 0.20414673046251994
+      },
+      "alpha": true
+    },
+    {
+      "file": "frame-03.png",
+      "phase": "passing",
+      "sourceSha256": "77ead297ea7889dfd91a1004f66ca2b7f5d82e4280c8afbd1cc9a9a2e0bd8192",
+      "sha256": "d9f29f65aff72e500f3387a4ee4d71ce1a5f003dcbeef827272ba4ec3aef2606",
+      "size": [
+        256,
+        256
+      ],
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alignment": {
+        "anchor": "独立黑色十字发夹",
+        "sourceCenter": {
+          "x": 667.3349191246432,
+          "y": 451.62987630827786,
+          "area": 5255
+        },
+        "translate": [
+          -5,
+          -1
+        ],
+        "scale": 0.20414673046251994
+      },
+      "alpha": true
+    },
+    {
+      "file": "frame-04.png",
+      "phase": "flight",
+      "sourceSha256": "f355d63eb03f9e9bfed1f2786fc9bb5e41837d0e30ca887978e01190e29e07bf",
+      "sha256": "aab1bde0158c8a62a5387dd09d15424b56712c4523f57e303e10941bba7c7709",
+      "size": [
+        256,
+        256
+      ],
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alignment": {
+        "anchor": "独立黑色十字发夹",
+        "sourceCenter": {
+          "x": 667.6348539797672,
+          "y": 451.7816377171216,
+          "area": 5239
+        },
+        "translate": [
+          -5,
+          -1
+        ],
+        "scale": 0.20414673046251994
+      },
+      "alpha": true
+    },
+    {
+      "file": "frame-05.png",
+      "phase": "opposite-contact",
+      "sourceSha256": "0e073008e1e6d18614c3dce3cf64369e3aedbfc338363f650fcd179a64c3e55f",
+      "sha256": "ba8e24c92ed7b60d386ff4236b7e92b62d2c7b031bb1735666f006f010de84ef",
+      "size": [
+        256,
+        256
+      ],
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alignment": {
+        "anchor": "独立黑色十字发夹",
+        "sourceCenter": {
+          "x": 663.755145631068,
+          "y": 452.1044660194175,
+          "area": 5150
+        },
+        "translate": [
+          -1,
+          -1
+        ],
+        "scale": 0.20414673046251994
+      },
+      "alpha": true
+    },
+    {
+      "file": "frame-06.png",
+      "phase": "opposite-compression",
+      "sourceSha256": "40379f45fc14ce7b54df7b120dc46c78ae49cb3f87e0be6104e9afe24b8bbe0e",
+      "sha256": "96ac287522c1f489e118b1ba7f260df2fa3845ac8d8dfcf5bfedf3d713d1d011",
+      "size": [
+        256,
+        256
+      ],
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alignment": {
+        "anchor": "独立黑色十字发夹",
+        "sourceCenter": {
+          "x": 663.8608979278588,
+          "y": 452.2404067536454,
+          "area": 5212
+        },
+        "translate": [
+          -1,
+          -1
+        ],
+        "scale": 0.20414673046251994
+      },
+      "alpha": true
+    },
+    {
+      "file": "frame-07.png",
+      "phase": "opposite-passing",
+      "sourceSha256": "8592f89dc793d020cbcbe5d55efbcbd8a54d194bec04f2f8dd384d76f3f6d757",
+      "sha256": "beb47ebb611551b901182813ce93f6e1d036aa29dfceeecceccfa8b0ec5f4d6f",
+      "size": [
+        256,
+        256
+      ],
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alignment": {
+        "anchor": "独立黑色十字发夹",
+        "sourceCenter": {
+          "x": 664.7446483180428,
+          "y": 452.08925840978594,
+          "area": 5232
+        },
+        "translate": [
+          -2,
+          -1
+        ],
+        "scale": 0.20414673046251994
+      },
+      "alpha": true
+    },
+    {
+      "file": "frame-08.png",
+      "phase": "opposite-flight",
+      "sourceSha256": "a41d89083bbd857a249a9521ec307405cdbbeaa4154dcea6803ffed380c97c0d",
+      "sha256": "a5146f64ddb80d4b88e524489a3c34b61939b9ac0600a5cc76015a5d8f0e48d9",
+      "size": [
+        256,
+        256
+      ],
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alignment": {
+        "anchor": "独立黑色十字发夹",
+        "sourceCenter": {
+          "x": 663.0445969125215,
+          "y": 451.91099676005337,
+          "area": 5247
+        },
+        "translate": [
+          -1,
+          -1
+        ],
+        "scale": 0.20414673046251994
+      },
+      "alpha": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "packages/contracts"
+    },
+    {
+      "path": "packages/chat-client"
+    },
+    {
+      "path": "apps/backend"
+    },
+    {
+      "path": "tools/import-openclaw"
+    }
+  ]
+}

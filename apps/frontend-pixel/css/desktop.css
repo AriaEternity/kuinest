@@ -1,0 +1,64 @@
+/* 小葵 OS 桌面场景 · 壁纸层
+   壁纸原图：assets/wallpaper.png（1672×941 像素美术，不做任何修改） */
+
+#desktop {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: #0b090e; /* 壁纸未就绪前的兜底底色，避免闪白 */
+}
+
+/* 图层由 DesktopScene 按需创建，自下而上堆叠 */
+.desktop-layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* 壁纸底层：cover 适配、保持比例、不拉伸变形 */
+.desktop-wallpaper {
+  background-image: url("../assets/wallpaper.png");
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/* 视口超过原图分辨率时才放大绘制，此时启用像素化保持像素美术质感；
+   低于原图分辨率（缩小绘制）时保持默认平滑，避免二次锯齿 */
+@media (min-width: 1673px), (min-height: 942px) {
+  .desktop-wallpaper {
+    image-rendering: pixelated;
+  }
+}
+
+/* 窄屏（近似 4:3 及更窄）：构图焦点左移，优先保留发光拱门与弯月 */
+@media (max-aspect-ratio: 4/3) {
+  .desktop-wallpaper {
+    background-position: 38% 50%;
+  }
+}
+
+/* 未来 UI 图层（图标 / 任务栏 / 窗口 / 小葵头像）容器，暂不绘制任何内容 */
+.desktop-ui {
+  pointer-events: none; /* 暂无交互元素，避免遮挡后续壁纸层以外的事件 */
+}
+
+/* 透明品牌图只作桌面装饰，不挡图标、窗口与桌面右键。 */
+.desktop-branding { z-index: 0; pointer-events: none; user-select: none; }
+.desktop-logo {
+  position: absolute;
+  top: clamp(36px, 9vh, 100px);
+  right: clamp(24px, 5vw, 88px);
+  width: clamp(250px, 29vw, 430px);
+  height: auto;
+  filter: drop-shadow(0 4px 2px rgba(15, 7, 19, .32));
+}
+@media (max-width: 600px) {
+  .desktop-logo {
+    top: max(30px, env(safe-area-inset-top));
+    right: 12px;
+    width: min(58vw, 260px);
+  }
+}
+@media (max-height: 450px) and (min-width: 601px) {
+  .desktop-logo { top: 20px; width: 240px; right: 24px; }
+}

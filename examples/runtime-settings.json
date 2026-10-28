@@ -1,0 +1,17 @@
+{
+  "model": "deepseek-flash",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "options": {
+    "allowedOrigin": "https://api.deepseek.com",
+    "maxTokens": 8192,
+    "thinking": "enabled",
+    "reasoning_effort": "high",
+    "wireFormat": "deepseek",
+    "imageInput": false
+  },
+  "config": {
+    "timezone": "UTC",
+    "windowTokens": 64000,
+    "reserveTokens": 10000
+  }
+}

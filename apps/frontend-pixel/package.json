@@ -1,0 +1,13 @@
+{
+  "name": "kuinest-pixel-desktop",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test tests/chat-state.test.mjs tests/typewriter.test.mjs tests/attention.test.mjs tests/run-model.test.mjs tests/game-window.test.mjs tests/conversation-management.test.mjs"
+  },
+  "license": "MIT"
+}

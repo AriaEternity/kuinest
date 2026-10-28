@@ -1,0 +1,23 @@
+{
+  "name": "@kuinest/backend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@fastify/cookie": "11.1.2",
+    "@fastify/rate-limit": "10.3.0",
+    "@kuinest/contracts": "0.0.0",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "better-sqlite3": "13.0.3",
+    "express": "5.3.0",
+    "fastify": "5.12.7",
+    "sharp": "0.35.5"
+  }
+}
