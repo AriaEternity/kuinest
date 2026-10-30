@@ -6,6 +6,10 @@
 
 葵栖是一个自托管的 AI 对话系统：前面是一间樱花色的像素小屋，后面是独立的会话、模型协议与确认制长期记忆。界面可以更换，资料和对话由自己的后端保存。
 
+[在线网站 · 小葵.com](https://xn--yet035g.com/)
+
+这是维护者运行的个人实例，聊天功能需登录，不提供公共聊天账号。无需账号或 API Key 的界面体验请使用下方的本地合成演示。
+
 ![葵栖像素桌面](docs/images/desktop.jpg)
 
 [快速体验](#先看一眼) · [完整入门](docs/getting-started.md) · [部署说明](docs/deployment.md) · [架构](docs/architecture.md) · [安全边界](SECURITY.md)

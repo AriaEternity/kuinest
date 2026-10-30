@@ -6,6 +6,10 @@
 
 KuiNest pairs a cherry blossom pixel desktop with a self-hosted conversation backend. Sessions, character documents, model protocol archives, and confirmed long-term memories live in your own backend, while the interface remains replaceable.
 
+[Live website · 小葵.com](https://xn--yet035g.com/)
+
+This is the maintainer's personal instance. Chat requires sign-in, and no public chat account is provided. For a UI preview without an account or API key, use the local synthetic demo below.
+
 ![Pixel desktop](docs/images/desktop.jpg)
 
 The UI includes a window manager, taskbar, streaming chat, session creation and switching, rename and confirmed deletion, memory review, and a small pixel running game. The backend provides SQLite persistence, authenticated APIs, leased writes, resumable SSE, immutable character versions, context budgeting, and verified backup restoration.

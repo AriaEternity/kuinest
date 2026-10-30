@@ -19,13 +19,17 @@ const rules=[
  ['npm认证配置',/(?:_authToken|_password)\s*=/],
 ];
 const problems=[];let bytes=0;
+// 已授权公开的网站入口只允许作为根 README 中的完整 Markdown 链接。
+const publicWebsiteReference=']('+new URL('https://小葵.com/').href+')';
 for(const file of files){
  const parts=file.split('/');
  if(!(top.has(file)||roots.some(p=>file.startsWith(p)))||parts.some(p=>ignored.has(p))||privateRoots.has(parts[0])||/\.(?:sqlite(?:3)?(?:-.*)?|db|key|pem|pfx|p12|log|zip|tar|tgz)$/i.test(file)||(/(?:^|\/)\.env(?:\.|$)/.test(file)&&!file.endsWith('.example')))problems.push([file,'发布路径']);
  const full=resolve(root,file),info=lstatSync(full);if(info.isSymbolicLink()||!info.isFile()){problems.push([file,'非普通文件']);continue;}
  if(info.size>12*1024*1024)problems.push([file,'文件过大']);
  const data=readFileSync(full);bytes+=data.length;
- const text=data.toString('utf8');for(const [label,pattern]of rules)if(pattern.test(text))problems.push([file,label]);
+ const text=data.toString('utf8');
+ const domainScanText=(file==='README.md'||file==='README.en.md')?text.replaceAll(publicWebsiteReference,'](https://example.com/)'):text;
+ for(const [label,pattern]of rules)if(pattern.test(label==='原生产标识'?domainScanText:text))problems.push([file,label]);
  if(file.endsWith('.md'))for(const match of text.matchAll(/\]\(([^)]+)\)/g)){
   const link=match[1].split('#')[0];if(!link||/^[a-z]+:/i.test(link))continue;
   if(!existsSync(resolve(full,'..',decodeURIComponent(link))))problems.push([file,'本地链接不存在']);
